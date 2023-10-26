@@ -1,0 +1,49 @@
+import pygame
+import sys
+
+# Inicializar pygame
+pygame.init()
+
+# Configuración de la ventana
+width, height = 800, 600
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Mover Círculo")
+
+# Colores
+white = (255, 255, 255)
+red = (255, 0, 0)
+
+# Posición inicial del círculo
+x, y = width // 2, height // 2
+radius = 50
+
+# Velocidad de movimiento
+vel = 5
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Detectar teclas presionadas
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        x -= vel
+    if keys[pygame.K_RIGHT]:
+        x += vel
+    if keys[pygame.K_UP]:
+        y -= vel
+    if keys[pygame.K_DOWN]:
+        y += vel
+
+    # Llenar la pantalla con blanco
+    screen.fill(white)
+
+    # Dibujar el círculo
+    pygame.draw.circle(screen, red, (x, y), radius)
+
+    pygame.display.update()
+
+pygame.quit()
+sys.exit()
